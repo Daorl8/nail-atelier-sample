@@ -169,7 +169,10 @@
     .footer-sns a { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.32); transition: color 0.2s; }
     .footer-sns a:hover { color: rgba(255,255,255,0.8); }
 
-    /* FLOAT */
+    .btn-call-ghost { display:inline-flex; align-items:center; justify-content:center; max-width:240px; padding:15px 32px; border:1px solid var(--rose); color:var(--rose); font-size:0.8rem; letter-spacing:0.08em; transition:background 0.2s, color 0.2s; }
+.btn-call-ghost:hover { background:var(--rose); color:#fff; }
+
+/* FLOAT */
     .float-reserve { position: fixed; bottom: 28px; right: 28px; z-index: 90; background: var(--rose); color: #fff; padding: 14px 26px; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; box-shadow: 0 4px 24px rgba(196,137,123,0.35); opacity: 0; transform: translateY(8px); transition: opacity 0.3s, transform 0.3s, background 0.2s; pointer-events: none; }
     .float-reserve.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
     .float-reserve:hover { background: #b07568; }
@@ -363,9 +366,9 @@
       <div class="gallery-item" data-anim="fadeUp" data-delay="1"><img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&q=80&auto=format&fit=crop" alt="작업1" /></div>
       <div class="gallery-item" data-anim="fadeUp" data-delay="2"><img src="https://images.unsplash.com/photo-1607779097040-26e80aa78e66?w=600&h=800&q=80&auto=format&fit=crop" alt="작업2" /></div>
       <div class="gallery-item" data-anim="fadeUp" data-delay="3"><img src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=600&h=500&q=80&auto=format&fit=crop" alt="작업3" /></div>
-      <div class="gallery-item" data-anim="fadeUp" data-delay="1"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&h=700&q=80&auto=format&fit=crop" alt="작업4" /></div>
-      <div class="gallery-item" data-anim="fadeUp" data-delay="2"><img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=600&q=80&auto=format&fit=crop" alt="작업5" /></div>
-      <div class="gallery-item" data-anim="fadeUp" data-delay="3"><img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=600&h=600&q=80&auto=format&fit=crop" alt="작업6" /></div>
+      <div class="gallery-item" data-anim="fadeUp" data-delay="1"><img src="https://images.unsplash.com/photo-1604655854839-e97f4cbf1f9f?w=600&h=700&q=80&auto=format&fit=crop" alt="작업4" /></div>
+      <div class="gallery-item" data-anim="fadeUp" data-delay="2"><img src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=600&q=80&auto=format&fit=crop" alt="작업5" /></div>
+      <div class="gallery-item" data-anim="fadeUp" data-delay="3"><img src="https://images.unsplash.com/photo-1607779097040-26e80aa78e66?w=600&h=600&q=80&auto=format&fit=crop" alt="작업6" /></div>
     </div>
   </section>
 
@@ -426,13 +429,13 @@
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M16.273 12.845L7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z" fill="#fff"/></svg>
           <span data-ko="네이버 예약" data-en="Naver Booking">네이버 예약</span>
         </a>
-        <a href="tel:010-0000-0000" class="btn-primary" style="max-width:240px; text-align:center;">
+        <a href="tel:010-0000-0000" class="btn-call-ghost">
           <span data-ko="전화 예약" data-en="Call to Book">전화 예약</span>
         </a>
       </div>
     </div>
     <div class="contact-map" data-anim="fadeLeft">
-      <iframe src="https://maps.google.com/maps?q=연남동&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen loading="lazy" title="네일 아뜰리에 위치"></iframe>
+      <iframe src="https://maps.google.com/maps?q=연남동&t=&z=15&ie=UTF8&iwloc=B&output=embed" allowfullscreen loading="lazy" title="네일 아뜰리에 위치"></iframe>
     </div>
   </section>
 
