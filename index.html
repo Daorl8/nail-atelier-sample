@@ -163,8 +163,16 @@
     .btn-kakao:hover { background: #f0d800; }
     .btn-naver-lg { display: inline-flex; align-items: center; gap: 10px; padding: 15px 32px; background: #03C75A; color: #fff; font-size: 0.8rem; letter-spacing: 0.08em; transition: background 0.2s; max-width: 240px; }
     .btn-naver-lg:hover { background: #02a84a; }
-    .contact-map { width: 100%; aspect-ratio: 4/3; overflow: hidden; background: var(--light); }
-    .contact-map iframe { width: 100%; height: 100%; border: none; filter: grayscale(20%); }
+    .contact-map { width: 100%; display: flex; flex-direction: column; gap: 10px; }
+    .contact-map .map-iframe { width: 100%; aspect-ratio: 4/3; border: none; background: var(--light); filter: saturate(0.8); }
+    .map-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .map-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 13px 14px; font-size: 0.82rem; letter-spacing: 0.02em; transition: opacity 0.2s, transform 0.1s; font-weight: 400; }
+    .map-btn:hover { opacity: 0.88; }
+    .map-btn:active { transform: scale(0.98); }
+    .map-btn-naver { background: #03C75A; color: #fff; }
+    .map-btn-kakao { background: #FEE500; color: #1E1B1A; }
+    .map-btn-logo { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 4px; background: rgba(255,255,255,0.18); font-weight: 700; font-size: 0.78rem; font-family: 'Arial Black', sans-serif; line-height: 1; }
+    .map-btn-kakao .map-btn-logo { background: rgba(0,0,0,0.08); color: #1E1B1A; }
 
     /* FOOTER */
     footer { background: var(--dark); padding: 48px 60px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.06); }
@@ -439,7 +447,17 @@
       </div>
     </div>
     <div class="contact-map" data-anim="fadeLeft">
-      <iframe src="https://maps.google.com/maps?q=연남동&t=&z=15&ie=UTF8&output=embed" allowfullscreen loading="lazy" title="네일 아뜰리에 위치"></iframe>
+      <iframe class="map-iframe" src="https://www.openstreetmap.org/export/embed.html?bbox=126.9192,37.5598,126.9312,37.5698&amp;layer=mapnik&amp;marker=37.5648,126.9252" loading="lazy" title="네일 아뜰리에 위치"></iframe>
+      <div class="map-actions">
+        <a href="https://map.naver.com/p/search/네일아뜰리에%20연남동" target="_blank" rel="noopener" class="map-btn map-btn-naver">
+          <span class="map-btn-logo">N</span>
+          <span data-ko="네이버 지도에서 보기" data-en="View on Naver Map">네이버 지도에서 보기</span>
+        </a>
+        <a href="https://map.kakao.com/?q=네일아뜰리에%20연남동" target="_blank" rel="noopener" class="map-btn map-btn-kakao">
+          <span class="map-btn-logo">k</span>
+          <span data-ko="카카오맵에서 보기" data-en="View on KakaoMap">카카오맵에서 보기</span>
+        </a>
+      </div>
     </div>
   </section>
 
