@@ -329,7 +329,7 @@
     <div class="about-text" data-anim="fadeLeft">
       <p class="section-eyebrow">About</p>
       <h2 class="section-title" data-ko="섬세한 손길로<br><em>완성되는 예술</em>" data-en="Art Completed<br><em>with Delicate Touch</em>">섬세한 손길로<br><em>완성되는 예술</em></h2>
-      <p class="section-body" data-ko="매 시술마다 고객의 손 모양, 피부톤, 라이프스타일을<br>함께 고려합니다.<br><br>단순한 컬러를 넘어 당신에게 어울리는 네일을 제안하는 것,<br>그것이 네일 아뜰리에가 추구하는 진짜 아름다움입니다." data-en="Every appointment considers the client's hand shape, skin tone, and lifestyle. Beyond simple color, we propose nails that suit you — that is the true beauty Nail Atelier pursues.">매 시술마다 고객의 손 모양, 피부톤, 라이프스타일을<br>함께 고려합니다.<br><br>단순한 컬러를 넘어 당신에게 어울리는 네일을 제안하는 것,<br>그것이 네일 아뜰리에가 추구하는 진짜 아름다움입니다.</p>
+      <p class="section-body" data-ko="매 시술마다 고객의 손 모양, 피부톤, <br class='br-mo'>라이프스타일을 <br class='br-pc'>함께 고려합니다.<br><br>단순한 컬러를 넘어 당신에게 어울리는 <br class='br-mo'>네일을 제안하는 것, <br>그것이 네일 아뜰리에가 추구하는 <br class='br-mo'>진짜 아름다움입니다." data-en="Every appointment considers the client's hand shape, skin tone, and lifestyle. Beyond simple color, we propose nails that suit you — that is the true beauty Nail Atelier pursues.">매 시술마다 고객의 손 모양, 피부톤, <br class='br-mo'>라이프스타일을 <br class='br-pc'>함께 고려합니다.<br><br>단순한 컬러를 넘어 당신에게 어울리는 <br class='br-mo'>네일을 제안하는 것, <br>그것이 네일 아뜰리에가 추구하는 <br class='br-mo'>진짜 아름다움입니다.</p>
       <div class="about-sign">Kim Jiyeon</div>
     </div>
   </section>
@@ -529,11 +529,13 @@ html { overflow-x: hidden; }
 .section-body { width: 100%; max-width: 420px; word-break: keep-all; }
 .services-grid { width: 100%; max-width: 1100px; }
 #contact { width: 100%; max-width: 1100px; }
+.br-mo { display: none; }
 @media (max-width: 900px) {
   .services-grid { max-width: 100%; }
   .hero-cta { flex-direction: column; align-items: flex-start; }
   .hero-cta .btn-primary, .hero-cta .btn-ghost, .hero-cta .btn-naver { width: auto; }
-  .hero-sub br { display: none; }
+  .br-mo { display: inline; }
+  .br-pc { display: none; }
 }
 </style>
 </body>
