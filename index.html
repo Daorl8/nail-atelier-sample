@@ -99,6 +99,17 @@
     .btn-ghost:hover { border-color: rgba(255,255,255,0.9); color: #fff; }
     .btn-naver { display: inline-flex; align-items: center; gap: 8px; padding: 14px 22px; background: #03C75A; color: #fff; font-size: 0.85rem; letter-spacing: 0.08em; transition: background 0.2s; }
     .btn-naver:hover { background: #02a84a; }
+    /* hero buttons: 크기 통일 + 네이버 아웃라인 스타일 (히어로 한정) */
+    .hero-cta .btn-primary,
+    .hero-cta .btn-ghost,
+    .hero-cta .btn-naver {
+      width: 200px; padding-left: 0; padding-right: 0;
+      display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box;
+    }
+    .hero-cta .btn-primary { border: 1px solid transparent; }
+    .hero-cta .btn-naver { background: transparent; border: 1px solid #03C75A; color: #03C75A; }
+    .hero-cta .btn-naver svg path { fill: #03C75A; }
+    .hero-cta .btn-naver:hover { background: rgba(3,199,90,0.08); color: #03C75A; }
     .hero-badge { position: absolute; right: 60px; bottom: 80px; text-align: right; }
     .hero-badge p { font-size: 0.78rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.45); line-height: 1.9; }
     .hero-badge strong { color: rgba(255,255,255,0.8); font-weight: 400; }
@@ -533,7 +544,7 @@ html { overflow-x: hidden; }
 @media (max-width: 900px) {
   .services-grid { max-width: 100%; }
   .hero-cta { flex-direction: column; align-items: flex-start; }
-  .hero-cta .btn-primary, .hero-cta .btn-ghost, .hero-cta .btn-naver { width: auto; }
+  .hero-cta .btn-primary, .hero-cta .btn-ghost, .hero-cta .btn-naver { width: 200px; }
   .br-mo { display: inline; }
   .br-pc { display: none; }
 }
