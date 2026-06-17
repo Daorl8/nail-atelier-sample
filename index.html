@@ -84,8 +84,8 @@
     .nav-drawer a { font-size: 1rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.7; }
 
     /* HERO */
-    #hero { position: relative; height: 100vh; min-height: 600px; overflow: hidden; }
-    .hero-img { position: absolute; inset: 0; }
+    #hero { position: relative; height: 100vh; height: 100svh; min-height: 600px; overflow: hidden; }
+    .hero-img { position: absolute; inset: 0; background: var(--dark); }
     .hero-img img { filter: brightness(0.82); }
     .hero-content { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 60px 80px; }
     .hero-eyebrow { font-size: 0.82rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 20px; }
@@ -289,7 +289,7 @@
   <!-- HERO -->
   <section id="hero">
     <div class="hero-img">
-      <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=1800&q=85&auto=format&fit=crop" alt="네일 아뜰리에" />
+      <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=1200&q=80&auto=format&fit=crop" alt="네일 아뜰리에" />
     </div>
     <div class="hero-content">
       <p class="hero-eyebrow">Seoul</p>
@@ -535,13 +535,19 @@
 
     // SCROLL ANIMATION
     const animEls = document.querySelectorAll('[data-anim]');
+    const revealAll = () => animEls.forEach(el => el.classList.add('visible'));
     if ('IntersectionObserver' in window) {
       const io = new IntersectionObserver((entries) => {
         entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
-      }, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
+      }, { threshold: 0.1 });
       animEls.forEach(el => io.observe(el));
+      // Safety net (in-app webviews / IO quirks): never leave in-view content hidden
+      setTimeout(() => {
+        const stuck = [...animEls].some(el => { const r = el.getBoundingClientRect(); return !el.classList.contains('visible') && r.top < innerHeight && r.bottom > 0; });
+        if (stuck) revealAll();
+      }, 1300);
     } else {
-      animEls.forEach(el => el.classList.add('visible'));
+      revealAll();
     }
 
     // LANGUAGE
