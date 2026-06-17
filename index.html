@@ -212,6 +212,7 @@
     [data-delay="3"] { transition-delay: 0.3s; }
     [data-delay="4"] { transition-delay: 0.4s; }
     [data-anim].visible { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { [data-anim] { opacity: 1 !important; transform: none !important; transition: none !important; } }
 
     /* RESPONSIVE */
     @media (max-width: 900px) {
@@ -517,19 +518,24 @@
     }
 
     // SCROLL ANIMATION
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('[data-anim]').forEach(el => io.observe(el));
+    const animEls = document.querySelectorAll('[data-anim]');
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+      }, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
+      animEls.forEach(el => io.observe(el));
+    } else {
+      animEls.forEach(el => el.classList.add('visible'));
+    }
 
     // LANGUAGE
     function setLang(lang) {
+      document.documentElement.lang = lang;
       document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent.trim().toLowerCase() === lang));
       document.querySelectorAll('[data-ko]').forEach(el => {
         const val = el.getAttribute('data-' + lang);
-        if (!val) return;
-        if (el.tagName === 'H1' || el.tagName === 'H2') { el.innerHTML = val; return; }
-        if (el.children.length === 0) { el.textContent = val; }
+        if (val == null) return;
+        el.innerHTML = val;
       });
     }
   </script>
