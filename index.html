@@ -536,16 +536,16 @@
     // SCROLL ANIMATION
     const animEls = document.querySelectorAll('[data-anim]');
     const revealAll = () => animEls.forEach(el => el.classList.add('visible'));
+    const rescueIfStuck = () => { const stuck = [...animEls].some(el => { const r = el.getBoundingClientRect(); return !el.classList.contains('visible') && r.top < innerHeight && r.bottom > 0; }); if (stuck) revealAll(); };
     if ('IntersectionObserver' in window) {
       const io = new IntersectionObserver((entries) => {
         entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
       }, { threshold: 0.1 });
       animEls.forEach(el => io.observe(el));
-      // Safety net (in-app webviews / IO quirks): never leave in-view content hidden
-      setTimeout(() => {
-        const stuck = [...animEls].some(el => { const r = el.getBoundingClientRect(); return !el.classList.contains('visible') && r.top < innerHeight && r.bottom > 0; });
-        if (stuck) revealAll();
-      }, 1300);
+      // Failsafe for in-app webviews where IO can be unreliable: rescue in-view content that stayed hidden (preserves scroll animation when IO works)
+      setTimeout(rescueIfStuck, 1300);
+      let once = false;
+      window.addEventListener('scroll', () => { if (once) return; once = true; setTimeout(rescueIfStuck, 300); }, { passive: true });
     } else {
       revealAll();
     }
