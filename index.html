@@ -61,7 +61,7 @@
       display: flex; align-items: center; justify-content: space-between;
       padding: 24px 48px; transition: background 0.4s, padding 0.4s;
     }
-    nav.scrolled { background: rgba(242,234,228,0.95); backdrop-filter: blur(8px); padding: 16px 48px; border-bottom: 1px solid var(--light); }
+    nav.scrolled { background: rgba(242,234,228,0.98); padding: 16px 48px; border-bottom: 1px solid var(--light); }
     .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.95); transition: color 0.4s; }
     nav.scrolled .nav-logo { color: var(--dark); }
     .nav-links { display: flex; gap: 32px; align-items: center; list-style: none; }
@@ -492,13 +492,13 @@
 
   <!-- MOBILE QUICK BAR -->
   <div class="mobile-bar" role="navigation" aria-label="빠른 연락">
-    <a href="tel:010-0000-0000" class="mbar-item mbar-call">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      <span data-ko="전화" data-en="Call">전화</span>
-    </a>
     <a href="https://pf.kakao.com" target="_blank" rel="noopener" class="mbar-item mbar-kakao">
       <svg viewBox="0 0 18 18" fill="none"><path d="M9 1.5C4.86 1.5 1.5 4.19 1.5 7.5c0 2.1 1.26 3.96 3.18 5.1L3.9 15l3.42-1.74c.54.09 1.1.14 1.68.14 4.14 0 7.5-2.69 7.5-6s-3.36-6-7.5-6z" fill="#1E1B1A"/></svg>
       <span data-ko="카톡" data-en="KakaoTalk">카톡</span>
+    </a>
+    <a href="https://booking.naver.com" target="_blank" rel="noopener" class="mbar-item mbar-naver">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M16.273 12.845L7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z" fill="#fff"/></svg>
+      <span data-ko="네이버 예약" data-en="Naver">네이버 예약</span>
     </a>
     <a href="#contact" class="mbar-item mbar-book">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
@@ -516,12 +516,21 @@
     const nav = document.getElementById('nav');
     const floatBtn = document.getElementById('floatBtn');
     const langToggle = document.getElementById('langToggle');
+    let navTicking = false, navState = null;
     window.addEventListener('scroll', () => {
-      const s = window.scrollY > 80;
-      nav.classList.toggle('scrolled', s);
-      floatBtn.classList.toggle('visible', s);
-      langToggle.classList.toggle('dark', s);
-    });
+      if (navTicking) return;
+      navTicking = true;
+      requestAnimationFrame(() => {
+        const s = window.scrollY > 80;
+        if (s !== navState) {
+          navState = s;
+          nav.classList.toggle('scrolled', s);
+          floatBtn.classList.toggle('visible', s);
+          langToggle.classList.toggle('dark', s);
+        }
+        navTicking = false;
+      });
+    }, { passive: true });
 
     // MENU
     function toggleMenu() {
@@ -571,8 +580,7 @@ html { overflow-x: hidden; }
 .br-mo { display: none; }
 @media (max-width: 900px) {
   .services-grid { max-width: 100%; }
-  .hero-cta { flex-direction: column; align-items: flex-start; }
-  .hero-cta .btn-primary, .hero-cta .btn-ghost, .hero-cta .btn-naver { width: 200px; }
+  .hero-cta { display: none; }
   .br-mo { display: inline; }
   .br-pc { display: none; }
 }
@@ -586,6 +594,7 @@ html { overflow-x: hidden; }
   .mbar-item:last-child { border-right: none; }
   .mbar-item svg { width: 20px; height: 20px; }
   .mbar-kakao { background: #FEE500; color: #1E1B1A; }
+  .mbar-naver { background: #03C75A; color: #fff; }
   .mbar-book { background: var(--rose); color: #fff; }
 }
 </style>
